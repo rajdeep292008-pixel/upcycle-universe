@@ -14,7 +14,216 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      comments: {
+        Row: {
+          body: string
+          created_at: string
+          creation_id: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          creation_id: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          creation_id?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "comments_creation_id_fkey"
+            columns: ["creation_id"]
+            isOneToOne: false
+            referencedRelation: "creations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      creations: {
+        Row: {
+          category: string
+          contact: string | null
+          created_at: string
+          currency: string
+          for_sale: boolean
+          id: string
+          image_url: string | null
+          materials: string[]
+          price: number | null
+          seeking_support: boolean
+          story: string
+          tagline: string | null
+          title: string
+          updated_at: string
+          user_id: string
+          waste_diverted_kg: number | null
+        }
+        Insert: {
+          category?: string
+          contact?: string | null
+          created_at?: string
+          currency?: string
+          for_sale?: boolean
+          id?: string
+          image_url?: string | null
+          materials?: string[]
+          price?: number | null
+          seeking_support?: boolean
+          story: string
+          tagline?: string | null
+          title: string
+          updated_at?: string
+          user_id: string
+          waste_diverted_kg?: number | null
+        }
+        Update: {
+          category?: string
+          contact?: string | null
+          created_at?: string
+          currency?: string
+          for_sale?: boolean
+          id?: string
+          image_url?: string | null
+          materials?: string[]
+          price?: number | null
+          seeking_support?: boolean
+          story?: string
+          tagline?: string | null
+          title?: string
+          updated_at?: string
+          user_id?: string
+          waste_diverted_kg?: number | null
+        }
+        Relationships: []
+      }
+      follows: {
+        Row: {
+          created_at: string
+          follower_id: string
+          following_id: string
+        }
+        Insert: {
+          created_at?: string
+          follower_id: string
+          following_id: string
+        }
+        Update: {
+          created_at?: string
+          follower_id?: string
+          following_id?: string
+        }
+        Relationships: []
+      }
+      likes: {
+        Row: {
+          created_at: string
+          creation_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          creation_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          creation_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "likes_creation_id_fkey"
+            columns: ["creation_id"]
+            isOneToOne: false
+            referencedRelation: "creations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          bio: string | null
+          created_at: string
+          display_name: string
+          handle: string
+          id: string
+          location: string | null
+          mission: string | null
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          display_name: string
+          handle: string
+          id: string
+          location?: string | null
+          mission?: string | null
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          display_name?: string
+          handle?: string
+          id?: string
+          location?: string | null
+          mission?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      support_requests: {
+        Row: {
+          amount: number | null
+          created_at: string
+          creation_id: string
+          id: string
+          kind: string
+          maker_id: string
+          message: string | null
+          supporter_id: string
+        }
+        Insert: {
+          amount?: number | null
+          created_at?: string
+          creation_id: string
+          id?: string
+          kind?: string
+          maker_id: string
+          message?: string | null
+          supporter_id: string
+        }
+        Update: {
+          amount?: number | null
+          created_at?: string
+          creation_id?: string
+          id?: string
+          kind?: string
+          maker_id?: string
+          message?: string | null
+          supporter_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "support_requests_creation_id_fkey"
+            columns: ["creation_id"]
+            isOneToOne: false
+            referencedRelation: "creations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never

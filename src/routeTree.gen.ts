@@ -10,33 +10,141 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as ExploreRouteImport } from './routes/explore'
+import { Route as MeRouteImport } from './routes/me'
+import { Route as ShareRouteImport } from './routes/share'
+import { Route as SupportRouteImport } from './routes/support'
+import { Route as CreationIdRouteImport } from './routes/creation.$id'
+import { Route as MakerHandleRouteImport } from './routes/maker.$handle'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExploreRoute = ExploreRouteImport.update({
+  id: '/explore',
+  path: '/explore',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MeRoute = MeRouteImport.update({
+  id: '/me',
+  path: '/me',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShareRoute = ShareRouteImport.update({
+  id: '/share',
+  path: '/share',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SupportRoute = SupportRouteImport.update({
+  id: '/support',
+  path: '/support',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreationIdRoute = CreationIdRouteImport.update({
+  id: '/creation/$id',
+  path: '/creation/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MakerHandleRoute = MakerHandleRouteImport.update({
+  id: '/maker/$handle',
+  path: '/maker/$handle',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/explore': typeof ExploreRoute
+  '/me': typeof MeRoute
+  '/share': typeof ShareRoute
+  '/support': typeof SupportRoute
+  '/creation/$id': typeof CreationIdRoute
+  '/maker/$handle': typeof MakerHandleRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/explore': typeof ExploreRoute
+  '/me': typeof MeRoute
+  '/share': typeof ShareRoute
+  '/support': typeof SupportRoute
+  '/creation/$id': typeof CreationIdRoute
+  '/maker/$handle': typeof MakerHandleRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/explore': typeof ExploreRoute
+  '/me': typeof MeRoute
+  '/share': typeof ShareRoute
+  '/support': typeof SupportRoute
+  '/creation/$id': typeof CreationIdRoute
+  '/maker/$handle': typeof MakerHandleRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/auth'
+    | '/explore'
+    | '/me'
+    | '/share'
+    | '/support'
+    | '/creation/$id'
+    | '/maker/$handle'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/auth'
+    | '/explore'
+    | '/me'
+    | '/share'
+    | '/support'
+    | '/creation/$id'
+    | '/maker/$handle'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/auth'
+    | '/explore'
+    | '/me'
+    | '/share'
+    | '/support'
+    | '/creation/$id'
+    | '/maker/$handle'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  AuthRoute: typeof AuthRoute
+  ExploreRoute: typeof ExploreRoute
+  MeRoute: typeof MeRoute
+  ShareRoute: typeof ShareRoute
+  SupportRoute: typeof SupportRoute
+  CreationIdRoute: typeof CreationIdRoute
+  MakerHandleRoute: typeof MakerHandleRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +156,75 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explore': {
+      id: '/explore'
+      path: '/explore'
+      fullPath: '/explore'
+      preLoaderRoute: typeof ExploreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/me': {
+      id: '/me'
+      path: '/me'
+      fullPath: '/me'
+      preLoaderRoute: typeof MeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/share': {
+      id: '/share'
+      path: '/share'
+      fullPath: '/share'
+      preLoaderRoute: typeof ShareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/support': {
+      id: '/support'
+      path: '/support'
+      fullPath: '/support'
+      preLoaderRoute: typeof SupportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/creation/$id': {
+      id: '/creation/$id'
+      path: '/creation/$id'
+      fullPath: '/creation/$id'
+      preLoaderRoute: typeof CreationIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/maker/$handle': {
+      id: '/maker/$handle'
+      path: '/maker/$handle'
+      fullPath: '/maker/$handle'
+      preLoaderRoute: typeof MakerHandleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  AuthRoute: AuthRoute,
+  ExploreRoute: ExploreRoute,
+  MeRoute: MeRoute,
+  ShareRoute: ShareRoute,
+  SupportRoute: SupportRoute,
+  CreationIdRoute: CreationIdRoute,
+  MakerHandleRoute: MakerHandleRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

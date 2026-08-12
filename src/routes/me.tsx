@@ -90,14 +90,20 @@ function MePage() {
       })
       .eq("id", user.id);
     setSaving(false);
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     toast.success("Profile updated.");
     queryClient.invalidateQueries({ queryKey: ["my-profile", user.id] });
   }
 
   async function remove(id: string) {
     const { error } = await supabase.from("creations").delete().eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     toast.success("Creation removed.");
     queryClient.invalidateQueries({ queryKey: ["feed", "mine", user?.id] });
   }

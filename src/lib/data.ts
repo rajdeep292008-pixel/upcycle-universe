@@ -88,12 +88,12 @@ async function decorate(rows: Creation[]): Promise<FeedItem[]> {
 }
 
 export async function fetchFeed(options: {
-  category?: string;
-  search?: string;
-  onlyForSale?: boolean;
-  onlySupport?: boolean;
-  userId?: string;
-  limit?: number;
+  category?: string | undefined;
+  search?: string | undefined;
+  onlyForSale?: boolean | undefined;
+  onlySupport?: boolean | undefined;
+  userId?: string | undefined;
+  limit?: number | undefined;
 } = {}): Promise<FeedItem[]> {
   let query = supabase
     .from("creations")

@@ -14,6 +14,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ExploreRouteImport } from './routes/explore'
 import { Route as MeRouteImport } from './routes/me'
 import { Route as ShareRouteImport } from './routes/share'
+import { Route as SupportRouteImport } from './routes/support'
 import { Route as CreationIdRouteImport } from './routes/creation.$id'
 import { Route as MakerHandleRouteImport } from './routes/maker.$handle'
 
@@ -42,6 +43,11 @@ const ShareRoute = ShareRouteImport.update({
   path: '/share',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SupportRoute = SupportRouteImport.update({
+  id: '/support',
+  path: '/support',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CreationIdRoute = CreationIdRouteImport.update({
   id: '/creation/$id',
   path: '/creation/$id',
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/explore': typeof ExploreRoute
   '/me': typeof MeRoute
   '/share': typeof ShareRoute
+  '/support': typeof SupportRoute
   '/creation/$id': typeof CreationIdRoute
   '/maker/$handle': typeof MakerHandleRoute
 }
@@ -68,6 +75,7 @@ export interface FileRoutesByTo {
   '/explore': typeof ExploreRoute
   '/me': typeof MeRoute
   '/share': typeof ShareRoute
+  '/support': typeof SupportRoute
   '/creation/$id': typeof CreationIdRoute
   '/maker/$handle': typeof MakerHandleRoute
 }
@@ -78,6 +86,7 @@ export interface FileRoutesById {
   '/explore': typeof ExploreRoute
   '/me': typeof MeRoute
   '/share': typeof ShareRoute
+  '/support': typeof SupportRoute
   '/creation/$id': typeof CreationIdRoute
   '/maker/$handle': typeof MakerHandleRoute
 }
@@ -89,6 +98,7 @@ export interface FileRouteTypes {
     | '/explore'
     | '/me'
     | '/share'
+    | '/support'
     | '/creation/$id'
     | '/maker/$handle'
   fileRoutesByTo: FileRoutesByTo
@@ -98,6 +108,7 @@ export interface FileRouteTypes {
     | '/explore'
     | '/me'
     | '/share'
+    | '/support'
     | '/creation/$id'
     | '/maker/$handle'
   id:
@@ -107,6 +118,7 @@ export interface FileRouteTypes {
     | '/explore'
     | '/me'
     | '/share'
+    | '/support'
     | '/creation/$id'
     | '/maker/$handle'
   fileRoutesById: FileRoutesById
@@ -117,6 +129,7 @@ export interface RootRouteChildren {
   ExploreRoute: typeof ExploreRoute
   MeRoute: typeof MeRoute
   ShareRoute: typeof ShareRoute
+  SupportRoute: typeof SupportRoute
   CreationIdRoute: typeof CreationIdRoute
   MakerHandleRoute: typeof MakerHandleRoute
 }
@@ -158,6 +171,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShareRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/support': {
+      id: '/support'
+      path: '/support'
+      fullPath: '/support'
+      preLoaderRoute: typeof SupportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/creation/$id': {
       id: '/creation/$id'
       path: '/creation/$id'
@@ -181,6 +201,7 @@ const rootRouteChildren: RootRouteChildren = {
   ExploreRoute: ExploreRoute,
   MeRoute: MeRoute,
   ShareRoute: ShareRoute,
+  SupportRoute: SupportRoute,
   CreationIdRoute: CreationIdRoute,
   MakerHandleRoute: MakerHandleRoute,
 }

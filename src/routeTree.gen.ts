@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ExploreRouteImport } from './routes/explore'
 import { Route as ShareRouteImport } from './routes/share'
+import { Route as CreationIdRouteImport } from './routes/creation.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,18 +35,25 @@ const ShareRoute = ShareRouteImport.update({
   path: '/share',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CreationIdRoute = CreationIdRouteImport.update({
+  id: '/creation/$id',
+  path: '/creation/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/explore': typeof ExploreRoute
   '/share': typeof ShareRoute
+  '/creation/$id': typeof CreationIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/explore': typeof ExploreRoute
   '/share': typeof ShareRoute
+  '/creation/$id': typeof CreationIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +61,14 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/explore': typeof ExploreRoute
   '/share': typeof ShareRoute
+  '/creation/$id': typeof CreationIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/explore' | '/share'
+  fullPaths: '/' | '/auth' | '/explore' | '/share' | '/creation/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/explore' | '/share'
-  id: '__root__' | '/' | '/auth' | '/explore' | '/share'
+  to: '/' | '/auth' | '/explore' | '/share' | '/creation/$id'
+  id: '__root__' | '/' | '/auth' | '/explore' | '/share' | '/creation/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,6 +76,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   ExploreRoute: typeof ExploreRoute
   ShareRoute: typeof ShareRoute
+  CreationIdRoute: typeof CreationIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -99,6 +109,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShareRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/creation/$id': {
+      id: '/creation/$id'
+      path: '/creation/$id'
+      fullPath: '/creation/$id'
+      preLoaderRoute: typeof CreationIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -107,6 +124,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   ExploreRoute: ExploreRoute,
   ShareRoute: ShareRoute,
+  CreationIdRoute: CreationIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

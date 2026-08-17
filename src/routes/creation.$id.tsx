@@ -150,7 +150,13 @@ function CreationPage() {
             {item.currency} {item.price}
           </span>
         ) : null}
-        {item.contact ? <span>Contact: {item.contact}</span> : null}
+        {contact.data ? (
+          <span>Contact: {contact.data}</span>
+        ) : user ? null : (
+          <Link to="/auth" className="underline underline-offset-4">
+            Sign in to see maker contact
+          </Link>
+        )}
       </div>
 
       <div className="mt-8 whitespace-pre-line text-base leading-relaxed">{item.story}</div>

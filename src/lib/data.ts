@@ -163,3 +163,13 @@ export async function fetchImpact() {
   const { count: makers } = await supabase.from("profiles").select("id", { count: "exact", head: true });
   return { creations: data?.length ?? 0, wasteKg: Math.round(total), makers: makers ?? 0 };
 }
+
+export async function fetchCreationContact(creationId: string) {
+  const { data, error } = await supabase
+    .from("creation_contacts")
+    .select("contact")
+    .eq("creation_id", creationId)
+    .maybeSingle();
+  if (error) return null;
+  return data?.contact ?? null;
+}

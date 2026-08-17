@@ -26,3 +26,7 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+---
+
+made with 💚 with the help of ai

@@ -25,7 +25,6 @@ export type Creation = {
   for_sale: boolean;
   seeking_support: boolean;
   image_url: string | null;
-  contact: string | null;
   created_at: string;
 };
 

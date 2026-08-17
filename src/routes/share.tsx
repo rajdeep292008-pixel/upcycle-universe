@@ -97,11 +97,16 @@ function SharePage() {
           for_sale: forSale,
           seeking_support: seekingSupport,
           image_url: imageUrl,
-          contact: contact.trim() || null,
         })
         .select("id")
         .single();
       if (error) throw error;
+      if (contact.trim()) {
+        const { error: contactError } = await supabase
+          .from("creation_contacts")
+          .insert({ creation_id: data.id, user_id: user.id, contact: contact.trim() });
+        if (contactError) throw contactError;
+      }
       toast.success("Your creation is live.");
       navigate({ to: "/creation/$id", params: { id: data.id } });
     } catch (error) {

@@ -5,7 +5,7 @@ import { Heart, Leaf, MessageCircle, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/auth";
-import { fetchComments, fetchCreation } from "@/lib/data";
+import { fetchComments, fetchCreation, fetchCreationContact } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
@@ -33,6 +33,11 @@ function CreationPage() {
 
   const creation = useQuery({ queryKey: ["creation", id], queryFn: () => fetchCreation(id) });
   const comments = useQuery({ queryKey: ["comments", id], queryFn: () => fetchComments(id) });
+  const contact = useQuery({
+    queryKey: ["creation-contact", id, user?.id],
+    queryFn: () => fetchCreationContact(id),
+    enabled: Boolean(user),
+  });
   const liked = useQuery({
     queryKey: ["liked", id, user?.id],
     queryFn: async () => {

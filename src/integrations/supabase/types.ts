@@ -46,10 +46,38 @@ export type Database = {
           },
         ]
       }
+      creation_contacts: {
+        Row: {
+          contact: string
+          created_at: string
+          creation_id: string
+          user_id: string
+        }
+        Insert: {
+          contact: string
+          created_at?: string
+          creation_id: string
+          user_id: string
+        }
+        Update: {
+          contact?: string
+          created_at?: string
+          creation_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "creation_contacts_creation_id_fkey"
+            columns: ["creation_id"]
+            isOneToOne: true
+            referencedRelation: "creations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       creations: {
         Row: {
           category: string
-          contact: string | null
           created_at: string
           currency: string
           for_sale: boolean
@@ -67,7 +95,6 @@ export type Database = {
         }
         Insert: {
           category?: string
-          contact?: string | null
           created_at?: string
           currency?: string
           for_sale?: boolean
@@ -85,7 +112,6 @@ export type Database = {
         }
         Update: {
           category?: string
-          contact?: string | null
           created_at?: string
           currency?: string
           for_sale?: boolean

@@ -5,7 +5,7 @@ import { Heart, Leaf, MessageCircle, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/auth";
-import { fetchComments, fetchCreation } from "@/lib/data";
+import { fetchComments, fetchCreation, fetchCreationContact } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
@@ -33,6 +33,11 @@ function CreationPage() {
 
   const creation = useQuery({ queryKey: ["creation", id], queryFn: () => fetchCreation(id) });
   const comments = useQuery({ queryKey: ["comments", id], queryFn: () => fetchComments(id) });
+  const contact = useQuery({
+    queryKey: ["creation-contact", id, user?.id],
+    queryFn: () => fetchCreationContact(id),
+    enabled: Boolean(user),
+  });
   const liked = useQuery({
     queryKey: ["liked", id, user?.id],
     queryFn: async () => {
@@ -150,7 +155,13 @@ function CreationPage() {
             {item.currency} {item.price}
           </span>
         ) : null}
-        {item.contact ? <span>Contact: {item.contact}</span> : null}
+        {contact.data ? (
+          <span>Contact: {contact.data}</span>
+        ) : user ? null : (
+          <Link to="/auth" className="underline underline-offset-4">
+            Sign in to see maker contact
+          </Link>
+        )}
       </div>
 
       <div className="mt-8 whitespace-pre-line text-base leading-relaxed">{item.story}</div>
